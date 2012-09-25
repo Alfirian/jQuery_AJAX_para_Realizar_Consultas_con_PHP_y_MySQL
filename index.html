@@ -13,6 +13,10 @@
 <script type="text/javascript" src="js/jquery_ui/jquery-ui-1.8.23.custom.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="js/jquery-validation-1.10.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery-validation-1.10.0/lib/jquery.metadata.js"></script>
+<script type="text/javascript" src="js/jquery-validation-1.10.0/localization/messages_es.js"></script>
+
 </head>
 <script type="text/javascript">
 	$(function(){
@@ -24,6 +28,7 @@
 			height:'auto',
 			resizable: false,
 			close:function(){
+				$('#formUsers fieldset > span').removeClass('error').empty();
 				$('#formUsers input[type="text"]').val('');
 		    	$('#formUsers select > option').removeAttr('selected');
 			}
@@ -33,6 +38,24 @@
 		$('#goNuevoUser').on('click',function(){
 			$('#agregarUser').dialog('open');
 		});
+
+		// Validar Formulario
+		$('#formUsers').validate({
+		    submitHandler: function(){
+		        
+		        var str = $('#formUsers').serialize();
+
+		        alert(str);
+
+		        return false;
+
+		    },
+		    errorPlacement: function(error, element) {
+		        error.appendTo(element.prev("span").append());
+		    }
+		});
+
+
 	});
 </script>
 <body>
@@ -90,22 +113,22 @@
 								<td>Luis Fernando Cázares</td>
 								<td>Desarrollo y Sistemas</td>
 								<td>cazaresluis</td>
-								<td>Activo</td>
-								<td class="centerTXT"><button>Editar</button></td>
+								<td class="centerTXT"><span class="btn btn-success btn-mini">Activo</span></td>
+								<td class="centerTXT"><button class="btn btn-mini">Editar</button></td>
 							<tr>
 								<tr>
 								<td>Luis Fernando Cázares</td>
 								<td>Desarrollo y Sistemas</td>
 								<td>cazaresluis</td>
-								<td>Activo</td>
-								<td class="centerTXT"><button>Editar</button></td>
+								<td class="centerTXT"><span class="btn btn-warning btn-mini">Suspendido</span></td>
+								<td class="centerTXT"><button class="btn btn-mini">Editar</button></td>
 							<tr>
 							<tr>
 								<td>Luis Fernando Cázares</td>
 								<td>Desarrollo y Sistemas</td>
 								<td>cazaresluis</td>
-								<td>Activo</td>
-								<td class="centerTXT"><button>Editar</button></td>
+								<td class="centerTXT"><span class="btn btn-success btn-mini">Activo</span></td>
+								<td class="centerTXT"><button class="btn btn-mini">Editar</button></td>
 							<tr>
 						</tbody>
 					</table>
