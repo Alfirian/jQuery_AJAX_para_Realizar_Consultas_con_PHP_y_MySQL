@@ -40,47 +40,10 @@ else
 <script type="text/javascript" src="js/jquery-validation-1.10.0/lib/jquery.metadata.js"></script>
 <script type="text/javascript" src="js/jquery-validation-1.10.0/localization/messages_es.js"></script>
 
+<script type="text/javascript" src="js/mainJavaScript.js"></script>
+
 </head>
-<script type="text/javascript">
-	$(function(){
-		// creación de ventana con formulario con jquery ui
-		$('#agregarUser').dialog({
-			autoOpen: false,
-			modal:true,
-			width:305,
-			height:'auto',
-			resizable: false,
-			close:function(){
-				$('#formUsers fieldset > span').removeClass('error').empty();
-				$('#formUsers input[type="text"]').val('');
-		    	$('#formUsers select > option').removeAttr('selected');
-			}
-		});
 
-		// funcionalidad del botón que abre el formulario
-		$('#goNuevoUser').on('click',function(){
-			$('#agregarUser').dialog('open');
-		});
-
-		// Validar Formulario
-		$('#formUsers').validate({
-		    submitHandler: function(){
-		        
-		        var str = $('#formUsers').serialize();
-
-		        alert(str);
-
-		        return false;
-
-		    },
-		    errorPlacement: function(error, element) {
-		        error.appendTo(element.prev("span").append());
-		    }
-		});
-
-
-	});
-</script>
 <body>
 		<div class="hide" id="agregarUser" Title="Agregar Usuario">
 	    	<form action="" method="post" id="formUsers" name="formUsers">
