@@ -94,7 +94,7 @@ else
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="listaUsuariosOK">
 							<?php echo $consultaUsuarios ?>
 						</tbody>
 					</table>

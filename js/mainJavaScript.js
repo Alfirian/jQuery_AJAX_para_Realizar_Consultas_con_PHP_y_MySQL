@@ -38,7 +38,7 @@ $(function(){
 		            success: function(response){
 
 		            	// Validar mensaje de error
-		            	if(response.respuesta == 'error'){
+		            	if(response.respuesta == false){
 		            		alert(response.mensaje);
 		            	}
 		            	else{
@@ -46,8 +46,15 @@ $(function(){
 		            		// si es exitosa la operación
 		                	$('#agregarUser').dialog('close');
 
-		                	alert(response.contenido);
-		            	}
+		                	// alert(response.contenido);
+		                	
+		                	if($('#sinDatos').length){
+		                		$('#sinDatos').remove();
+		                	}
+		                	
+		                	$('#listaUsuariosOK').append(response.contenido);
+
+						}
 
 		            	$('#formUsers .ajaxLoader').hide();
 
