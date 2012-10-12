@@ -10,7 +10,6 @@ $(function(){
 				$('#formUsers fieldset > span').removeClass('error').empty();
 				$('#formUsers input[type="text"]').val('');
 		    	$('#formUsers select > option').removeAttr('selected');
-		    	$('#id_user').val('0');
 			}
 		});
 
@@ -20,10 +19,7 @@ $(function(){
 			$('#accion').val('addUser');
 
 			// Abrimos el Formulario
-			$('#agregarUser').dialog({
-				title:'Agregar Usuario',
-				autoOpen:true
-			});
+			$('#agregarUser').dialog('open');
 		});
 
 		// Validar Formulario
@@ -60,7 +56,9 @@ $(function(){
 		                		$('#sinDatos').remove();
 		                	}
 		                	
-		                	// Validad tipo de acción
+		                	// VErificamos que tipo de acción estamos ejecutando
+		                	// Para vaciar la lista de usuarios
+
 		                	if($('#accion').val() == 'editUser'){
 		                		$('#listaUsuariosOK').empty();
 		                	}
@@ -86,32 +84,26 @@ $(function(){
 		});
 
 
-
 		// Edición de Registros
 		$('body').on('click','#listaUsuariosOK a',function (e){
 			e.preventDefault();
 
-			// alert($(this).attr('href'));
-
-			// Valor de la acción
+			// Asignamos valor a la variable acción
 			$('#accion').val('editUser');
 
-			// Id Usuario
+			// asignamos el id de usurio
 			$('#id_user').val($(this).attr('href'));
 
-			// Llenar el formulario con los datos del registro seleccionado
+			// Extraemos valores del registro
 			$('#usr_nombre').val($(this).parent().parent().children('td:eq(0)').text());
 			$('#usr_puesto').val($(this).parent().parent().children('td:eq(1)').text());
 			$('#usr_nick').val($(this).parent().parent().children('td:eq(2)').text());
 
-			// Seleccionar status
-			$('#usr_status option[value='+ $(this).parent().parent().children('td:eq(3)').text() +']').attr('selected',true);
+			// Seleccionando la lista de status
+			$('#usr_status option[value='+ $(this).parent().parent().children('td:eq(3)').text() +']').attr("selected",true);
 
 			// Abrimos el Formulario
-			$('#agregarUser').dialog({
-				title:'Editar Usuario',
-				autoOpen:true
-			});
+			$('#agregarUser').dialog('open');
 
 		});
 });

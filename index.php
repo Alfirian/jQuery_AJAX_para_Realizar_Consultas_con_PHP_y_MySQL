@@ -48,7 +48,8 @@ else
 		<div class="hide" id="agregarUser" Title="Agregar Usuario">
 	    	<form action="" method="post" id="formUsers" name="formUsers">
 	    		<fieldset id="ocultos">
-	    			<input type="hidden" id="usr_accion" name="usr_accion" class="{required:true}"/>
+	    			<input type="hidden" id="accion" name="accion" class="{required:true}"/>
+	    			<input type="hidden" id="id_user" name="id_user" class="{required:true}" value="0"/>
 	    		</fieldset>
 				<fieldset id="datosUser">
 					<p>Nombre</p>
@@ -74,7 +75,7 @@ else
 
 				<fieldset id="ajaxLoader" class="ajaxLoader hide">
 					<img src="images/default-loader.gif">
-					<span>Espere un momento...</span>
+					<p>Espere un momento...</p>
 				</fieldset>
 			</form>
 	    </div>

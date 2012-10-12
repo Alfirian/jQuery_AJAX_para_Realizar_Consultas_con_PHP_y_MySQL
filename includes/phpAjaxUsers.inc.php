@@ -31,6 +31,10 @@ if($errorDbConexion == false){
 				// Ejecutamos el query
 				$resultadoQuery = $mysqli -> query($query);
 
+
+				// Obtenemos el id de user para edición
+				$id_userOK = $mysqli -> insert_id;
+
 				if($resultadoQuery == true){
 					$respuestaOK = true;
 					$mensajeError = "Se ha agregado el registro correctamente";
@@ -40,7 +44,7 @@ if($errorDbConexion == false){
 							<td>'.$_POST['usr_puesto'].'</td>
 							<td>'.$_POST['usr_nick'].'</td>
 							<td class="centerTXT"><span class="btn btn-mini '.$statusTipoOK[$_POST['usr_status']].'">'.$_POST['usr_status'].'</span></td>
-							<td class="centerTXT"><a class="btn btn-mini" href="">Editar</a></td>
+							<td class="centerTXT"><a class="btn btn-mini" href="'.$id_userOK.'">Editar</a></td>
 						<tr>
 					';
 
@@ -51,6 +55,30 @@ if($errorDbConexion == false){
 
 			break;
 			
+			case 'editUser':
+				// Armamos el query
+				$query = sprintf("UPDATE tbl_usuarios
+								 SET usr_nombre='%s', usr_puesto='%s', usr_nick='%s', usr_status='%s'
+								 WHERE id_user=%d LIMIT 1",
+								 $_POST['usr_nombre'],$_POST['usr_puesto'],$_POST['usr_nick'],$_POST['usr_status'],$_POST['id_user']);
+
+				// Ejecutamos el query
+				$resultadoQuery = $mysqli -> query($query);
+
+				// Validamos que se haya actualizado el registro
+				if($mysqli -> affected_rows == 1){
+					$respuestaOK = true;
+					$mensajeError = 'Se ha actualizado el registro correctamente';
+
+					$contenidoOK = consultaUsers($mysqli);
+
+				}else{
+					$mensajeError = 'No se ha actualizado el registro';
+				}
+
+
+			break;
+
 			default:
 				$mensajeError = 'Esta acción no se encuentra disponible';
 			break;
