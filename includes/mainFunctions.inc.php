@@ -32,7 +32,7 @@ function consultaUsers($linkDB){
 					<td>'.$listadoOK['usr_puesto'].'</td>
 					<td>'.$listadoOK['usr_nick'].'</td>
 					<td class="centerTXT"><span class="btn btn-mini '.$statusTipo[$listadoOK['usr_status']].'">'.$listadoOK['usr_status'].'</span></td>
-					<td class="centerTXT"><a class="btn btn-mini" href="'.$listadoOK['id_user'].'">Editar</a></td>
+					<td class="centerTXT"><a data-accion="editar" class="btn btn-mini" href="'.$listadoOK['id_user'].'">Editar</a> <a data-accion="eliminar" class="btn btn-mini" href="'.$listadoOK['id_user'].'">Eliminar</a></td>
 				<tr>
 			';
 		}

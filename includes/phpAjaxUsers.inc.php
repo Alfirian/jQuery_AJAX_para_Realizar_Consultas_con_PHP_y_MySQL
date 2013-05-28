@@ -2,7 +2,7 @@
 // Script para ejecutar AJAX
 
 // Insertar y actualizar tabla de usuarios
-sleep(3);
+sleep(2);
 
 // Inicializamos variables de mensajes y JSON
 $respuestaOK = false;
@@ -44,7 +44,7 @@ if($errorDbConexion == false){
 							<td>'.$_POST['usr_puesto'].'</td>
 							<td>'.$_POST['usr_nick'].'</td>
 							<td class="centerTXT"><span class="btn btn-mini '.$statusTipoOK[$_POST['usr_status']].'">'.$_POST['usr_status'].'</span></td>
-							<td class="centerTXT"><a class="btn btn-mini" href="'.$id_userOK.'">Editar</a></td>
+							<td class="centerTXT"><a data-accion="editar" class="btn btn-mini" href="'.$id_userOK.'">Editar</a> <a data-accion="eliminar" class="btn btn-mini" href="'.$id_userOK.'">Eliminar</a></td>
 						<tr>
 					';
 
@@ -77,6 +77,26 @@ if($errorDbConexion == false){
 				}
 
 
+			break;
+			case 'eliminar':
+				// Armamos el query
+				$query = sprintf("DELETE FROM tbl_usuarios
+								 WHERE id_user=%d LIMIT 1",
+								 $_POST['id_user']);
+
+				// Ejecutamos el query
+				$resultadoQuery = $mysqli -> query($query);
+
+				// Validamos que se haya actualizado el registro
+				if($mysqli -> affected_rows == 1){
+					$respuestaOK = true;
+					$mensajeError = 'Se ha actualizado el registro correctamente';
+
+					$contenidoOK = consultaUsers($mysqli);
+
+				}else{
+					$mensajeError = 'No se ha eliminado el registro';
+				}
 			break;
 
 			default:

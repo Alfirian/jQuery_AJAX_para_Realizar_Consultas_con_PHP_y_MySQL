@@ -79,6 +79,11 @@ else
 				</fieldset>
 			</form>
 	    </div>
+
+	    <div id="dialog-borrar" title="Eliminar registro" class="hide">
+			<p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Este registro se borrará de forma permanente. ¿Esta seguro?</p>
+		</div>
+		
 		<div id="wraper">
 		    <section id="content">
 		    	<div id="btnAddUser" class="center addUser">
